@@ -15,7 +15,24 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Random Challenge Picker",
   description: "A fun app to pick random coding challenges",
+  icons: {
+    icon: "/logo.png",
+    shortcut: "/logo.png",
+    apple: "/logo.png",
+  },
+  openGraph: {
+    title: "Random Challenge Picker",
+    description: "A fun app to pick random coding challenges",
+    images: ["/logo.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Random Challenge Picker",
+    description: "A fun app to pick random coding challenges",
+    images: ["/logo.png"],
+  },
 };
+
 
 export default function RootLayout({
   children,
