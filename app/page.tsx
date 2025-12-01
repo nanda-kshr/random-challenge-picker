@@ -8,7 +8,10 @@ export default function Home() {
   return (
     <div className="flex min-h-screen items-center justify-center rc-bg-background font-sans">
       <main className="flex w-full flex-col items-center justify-start py-4 px-4 sm:px-8">
-        <header className="flex w-full items-center justify-center pb-4">
+        <header className="flex w-full items-center justify-center gap-3 pb-4">
+          <span className="inline-flex items-center justify-center h-12 w-12 rounded-full bg-[#f5ecd7]">
+            <img src="/logo.png" alt="Logo" className="h-10 w-10 rounded-full shadow filter saturate-50 brightness-110" style={{ mixBlendMode: 'multiply' }} />
+          </span>
           <h1 className="text-lg rc-header-title">Random Challenge Picker</h1>
         </header>
 
