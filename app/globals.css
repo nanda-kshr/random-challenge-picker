@@ -1,8 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Indie+Flower&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Minimalist beige palette */
+  --background: #F5F0E8; /* soft beige background */
+  --foreground: #5C4F3D; /* warm dark brown text */
+  --muted: #9C8B7A; /* muted tan */
+  --accent: #C4A882; /* light tan accent */
+  --accent-text: #4A3F32; /* dark brown on accent */
+  --card-bg: #FAF7F2; /* lighter beige card */
+  --card-border: #E8E0D5; /* subtle beige border */
 }
 
 @theme inline {
@@ -14,13 +21,80 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Keep beige palette in dark mode for consistency */
+    --background: #F5F0E8;
+    --foreground: #5C4F3D;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Patrick Hand', 'Indie Flower', cursive, Arial, Helvetica, sans-serif !important;
+}
+
+/* Small headings scaling to preserve the handwritten vibe */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Patrick Hand', 'Indie Flower', cursive, Arial, Helvetica, sans-serif;
+}
+
+/* Ensure all elements use handwriting font (includes inputs, buttons, etc.) */
+html, body, h1, h2, h3, h4, h5, h6, p, a, span, strong, em, b, i, small, label, button, input, textarea, select, code, pre, th, td {
+  font-family: 'Patrick Hand', 'Indie Flower', cursive, Arial, Helvetica, sans-serif !important;
+}
+
+/* App specific lighter classes using the color variables */
+.rc-bg-accent { background-color: var(--accent); color: var(--accent-text); }
+.rc-text-muted { color: var(--muted); }
+.rc-card-bg { background-color: var(--card-bg); }
+.rc-card-border { border-color: var(--card-border); }
+.rc-bg-background { background-color: var(--background); }
+.rc-text-foreground { color: var(--foreground); }
+
+/* Button: subtle shadow and no heavy border */
+.rc-btn { box-shadow: 0 1px 0 rgba(0,0,0,0.03), 0 6px 18px rgba(16,24,40,0.02); border-radius: 8px; }
+
+/* Thicker header and title styles for handwriting fonts (use subtle stroke/shadow) */
+.rc-header-title {
+  font-weight: 1700 !important;
+  font-size: 1.125rem; /* match text-lg */
+  -webkit-text-stroke: 0.6px rgba(76, 64, 48, 0.07);
+  text-shadow: 0 1px 0 rgba(255,255,255,0.6), 0 2px 2px rgba(0,0,0,0.04);
+}
+
+.rc-card-title {
+  font-weight: 1700 !important;
+  font-size: 1.125rem; /* match text-lg */
+  -webkit-text-stroke: 0.45px rgba(76, 64, 48, 0.06);
+  text-shadow: 0 1px 0 rgba(255,255,255,0.6);
+}
+
+/* Card description — improve readability: better contrast, slightly larger, and relaxed line-height */
+.rc-card-desc {
+  color: var(--foreground);
+  font-size: 1rem; /* readable base size */
+  line-height: 1.45;
+  max-width: 48ch; /* keep lines comfortable */
+  margin: 0.5rem 0 0; /* similar to mt-2 */
+  text-align: center;
+  opacity: 0.75;
+}
+
+/* Responsive card that keeps a 9:16 ratio with height matching viewport when possible.
+   - width: min(92vw, calc(100vh * 9 / 16))
+   - height: min(100vh, calc(92vw * 16 / 9))
+   This removes static widths/heights and lets the card scale to fit screen height while
+   preventing overflow on very narrow screens. */
+.rc-card-responsive {
+  /* Reserve vertical space for header + button + gaps to avoid overflow (no scrollbars).
+     Adjust --rc-vertical-safety if your header/button sizes change. */
+  --rc-vertical-safety: 96px;
+
+  /* width is constrained by viewport width and available height to keep 9:16 ratio */
+  width: min(86vw, calc((100vh - var(--rc-vertical-safety)) * 9 / 16));
+
+  /* height uses available height but also respects the 9:16 ratio from width */
+  height: min(calc(100vh - var(--rc-vertical-safety)), calc(86vw * 16 / 9));
+
+  max-height: calc(100vh - var(--rc-vertical-safety));
 }
